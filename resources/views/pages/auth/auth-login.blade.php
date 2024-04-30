@@ -15,22 +15,17 @@
         </div>
 
         <div class="card-body">
-            <form method="POST"
-                action="#"
-                class="needs-validation"
-                novalidate="">
+            <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+                @csrf
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input id="email"
-                        type="email"
-                        class="form-control"
-                        name="email"
-                        tabindex="1"
-                        required
-                        autofocus>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                    value="{{ old('email') }}" name="email" tabindex="1">
+                @error('email')
                     <div class="invalid-feedback">
-                        Please fill in your email
+                        {{ $message }}
                     </div>
+                @enderror
                 </div>
 
                 <div class="form-group">
@@ -55,7 +50,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox"
                             name="remember"
@@ -65,7 +60,7 @@
                         <label class="custom-control-label"
                             for="remember-me">Remember Me</label>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                     <button type="submit"
@@ -93,9 +88,9 @@
 
         </div>
     </div>
-    <div class="text-muted mt-5 text-center">
+    {{-- <div class="text-muted mt-5 text-center">
         Don't have an account? <a href="auth-register.html">Create One</a>
-    </div>
+    </div> --}}
 @endsection
 
 @push('scripts')
